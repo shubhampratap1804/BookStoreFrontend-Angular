@@ -1,0 +1,180 @@
+
+<mat-card>
+    <b><mat-label> cartList ({{ cartListLength }})</mat-label></b>
+
+    <b><div class="alert alert-danger text-justify" *ngIf="cartList.length==0">
+      Cart Empty</div></b>
+
+            <div>
+                <div *ngFor="let books of cartList " fxLayout="row">
+                    <img style="padding-top: 24px;
+                  width: 71px;
+                  height: 126px;
+                  padding-left: 0px;
+                  margin-left: 51px;" src="assets\bookimage\{{books.image}}" class="bookimage">
+                    <br>
+                    <div class="details" fxLayout="row">
+                        <span style="margin-left: 11%;
+                      padding-top: 2em;
+                      font-size: 14px;">{{books.bookName}}</span>
+                       <b> <h3 style="margin-left: 4em;
+                      font-size: 10px;
+                      color: slategrey;
+                      padding-top: 70px;">by:{{books.authorName}}</h3></b>
+                        <h3 style="margin-left: -0.3em;
+                      padding-top: 90px;
+                      font-size: 17px; font-weight: 600;">Rs.{{books.price * this.noOfBook}}</h3>
+                    </div>
+                    <div style="display: flex; flex-direction: row; margin-left: -2.0em; margin-top: 10em; border-radius: 2em;">
+                        <div style="display: flex; flex-direction: row;margin-bottom: 10px;">
+                            <div style="height: 20px; width: 20px;">
+                                <button style="  height: 25px;
+                                width: 25px;
+                                text-align: center;
+                                background-color: #f9f9f9;
+                                border-radius: 11em;
+                                border-color: #eee9e9;" (click)="increase()" >  +
+                          </button>
+                            </div>
+                            <div style="margin-left: 13px;
+                          margin-right: 9px;
+                          height: 23px;
+                          width: 44px;
+                          margin-top: 2px;
+                          background: #FFFFFF 0% 0% no-repeat padding-box;
+                          border: 1px solid #DBDBDB;
+                          border-radius: 1px;
+                          opacity: 1;
+                          text-align: center;
+                      ">
+                                {{ this.noOfBook }}
+                            </div>
+                            <div>
+                                <button style="height: 25px;
+                                width: 25px;
+                                text-align: center;
+                                background-color: #f9f9f9;
+                                border-radius: 11em;
+                                border-color: #eee9e9;" [disabled]="this.noOfBook <= 1" (click)="decrease()" >-
+                            </button>
+                            </div>
+                            <div>
+                                <button style="height: 30px; width: 60px;font-size: 12px;
+                                background-color:red;padding-top: 0em; margin-left: 10px; border: transparent;
+                               " (click)="Removecart(books.bookId)">Remove
+                               </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="button1" (click)="goAddressDetails()" >CONTINUE</button>
+</mat-card>
+
+<mat-card>
+  <mat-expansion-panel
+    [expanded]="detailsSection === 0"
+    [disabled]="detailsSection === 1"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Customer Details </mat-panel-title>
+    </mat-expansion-panel-header>
+
+  <form [formGroup]="BookStoreFormGroup" >
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px" >
+      <mat-form-field  style="width:18vw"  appearance="outline" class="example-full-width3">
+          <mat-label >Name</mat-label>
+          <input type="text" matInput placeholder=" userName" ngDefaultControl formControlName="userName" autocomplete="off" required>
+          
+      </mat-form-field>
+  
+      <mat-form-field style="width:18vw" appearance="outline" class="example-full-width4" >
+          <mat-label>Phone Number</mat-label>
+          <input type="text"   matInput placeholder="mobileNo" ngDefaultControl  formControlName="mobileNo" autocomplete="off" required>
+      </mat-form-field>
+  </div>
+
+  <div class="parent" >
+    <mat-form-field  style="width:18vw" appearance="outline" class="example-full-width3">
+        <mat-label >Pin code</mat-label>
+        <input type="text" matInput placeholder=" pincode" ngDefaultControl formControlName="pincode" autocomplete="off" required>
+    </mat-form-field>
+   </div>
+
+   <div style="margin-left: 110px;" >
+    <mat-form-field  style="width:37vw" appearance="outline" class="example-full-width3">
+        <mat-label >Address</mat-label>
+        <input type="text" matInput placeholder=" address" ngDefaultControl  formControlName="address" autocomplete="off" required>       
+    </mat-form-field>
+   </div>
+
+    
+   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px" >
+    <mat-form-field  style="width:18vw" appearance="outline" class="example-full-width3">
+        <mat-label >City</mat-label>
+        <input type="text" matInput placeholder=" City" ngDefaultControl formControlName="city" autocomplete="off" required>
+        
+    </mat-form-field>
+
+    <mat-form-field style="width:18vw" appearance="outline" class="example-full-width4" >
+        <mat-label>State</mat-label>
+        <input type="text"   matInput placeholder="State" ngDefaultControl formControlName="state" autocomplete="off" required>
+    </mat-form-field>
+</div>
+
+<mat-radio-group ngDefaultControl formControlName="type" aria-label="Select an option">
+  <div>
+        <mat-label style="margin-left: 110px;">Type</mat-label>
+  </div>
+  <mat-radio-button value="home">Home</mat-radio-button>
+  <mat-radio-button value="work">Work</mat-radio-button>
+  <mat-radio-button value="others">Others</mat-radio-button>
+</mat-radio-group>
+
+<button class="button1" *ngIf="summery === 1" (click)="onSubmit()">CONTINUE</button>
+
+  </form>
+</mat-expansion-panel>
+
+</mat-card>
+
+<mat-card>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="summery === 0" [disabled]="summery === 1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Order summery </mat-panel-title>
+      </mat-expansion-panel-header>
+  <div>
+    <div *ngFor="let books of cartList " fxLayout="row">
+        <img style="padding-top: 24px;
+      width: 71px;
+      height: 126px;
+      padding-left: 0px;
+      margin-left: 51px;" src="assets\bookimage\{{books.image}}" class="bookimage">
+        <br>
+        <div class="details" fxLayout="row">
+            <span style="margin-left: 11%;
+          padding-top: 2em;
+          font-size: 14px;">{{books.bookName}}</span>
+           <b> <h3 style="margin-left: 4em;
+          font-size: 10px;
+          color: slategrey;
+          padding-top: 70px;">by:{{books.authorName}}</h3></b>
+            <h3 style="margin-left: -0.3em;
+          padding-top: 90px;
+          font-size: 17px; font-weight: 600;">Rs.{{books.price}}</h3>
+        </div>
+        
+    </div>
+
+</div>
+  <a >
+    <button class="button1" routerLink="/order" [hidden]="Condition" (click)="change()" >CHECK OUT</button>
+  </a>
+
+</mat-expansion-panel>
+</mat-accordion>
+</mat-card>
+

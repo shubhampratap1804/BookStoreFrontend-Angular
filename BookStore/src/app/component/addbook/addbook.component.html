@@ -1,0 +1,70 @@
+
+<mat-card>
+    <div class="container">
+
+    <div style="background-color: #46a030; width: 100%; margin-bottom: 10px;">
+        <h2 style="color: white; text-align: center;padding-top: 10px;">Add Book</h2>
+    </div>
+
+    <form [formGroup]="BookStoreFormGroup" (ngSubmit)="onSubmit()" >
+
+        <div class="parent">
+            <mat-form-field style="width:37vw" appearance="outline">
+                <mat-label>Book Name</mat-label>
+                <input type="name" matInput placeholder="Enter your Bookname" fxFlex="50" formControlName="bookName" autocomplete="off" required>
+                <mat-icon matSuffix style="color: grey;">book</mat-icon>
+            </mat-form-field>
+        </div>
+
+        
+         
+        <div class="parent " >
+            <mat-form-field style="width:37vw" appearance="outline" >
+                <mat-label >Book Authour</mat-label>
+                <input type="name" matInput placeholder="Enter your Bookauthour" formControlName="authorName" autocomplete="off" required>
+                <mat-icon matSuffix style="color: grey;">person</mat-icon> 
+            </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px" >
+            <mat-form-field  style="width:18vw" appearance="outline" class="example-full-width3">
+                <mat-label >Book Price</mat-label>
+                <input type="number" matInput placeholder=" price" formControlName="price" autocomplete="off" required>
+                <mat-icon matSuffix style="color: grey;"> 
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M8,3H18L17,5H13.74C14.22,5.58 14.58,6.26 14.79,7H18L17,9H15C14.75,11.57 12.74,13.63 10.2,13.96V14H9.5L15.5,21H13L7,14V12H9.5V12C11.26,12 12.72,10.7 12.96,9H7L8,7H12.66C12.1,5.82 10.9,5 9.5,5H7L8,3Z" />
+                    </svg>
+                </mat-icon>
+            </mat-form-field>
+        
+            <mat-form-field style="width:18vw" appearance="outline" class="example-full-width4" >
+                <mat-label>Book Quantity</mat-label>
+                <input type="text"   matInput placeholder="No Of Books" formControlName="noOfBooks" autocomplete="off" required>
+                <mat-icon matSuffix style="color: grey;">pets</mat-icon>
+            </mat-form-field>
+        </div>
+      
+        <div class="parent">
+            <mat-form-field style="width:37vw" appearance="outline"  >
+                <mat-label>Book Description</mat-label>
+                <input type="text" matInput placeholder="Enter your bookDescription" formControlName="bookDetails" autocomplete="off" required>
+                <mat-icon matSuffix style="color: grey;">edit</mat-icon>
+            </mat-form-field>
+        </div>
+        
+        <div class="parent">
+            <input type="file" name="image" formControlName="image" (change)="onSelectedImage($event)"/>
+        </div>
+        
+        <div class="parent">
+            <button mat-button id="submit" type="submit" style="border: 2px solid black; width: 44%; margin-top: 30px;border-radius: 0px; outline: none;" >
+                Add Book
+            </button>
+        </div>
+
+        
+    </form>
+</div>
+</mat-card>
+

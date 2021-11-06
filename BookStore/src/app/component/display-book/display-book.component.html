@@ -1,0 +1,60 @@
+
+<div class="main-container">
+    <div class="container">
+        
+        <br>
+        <div class="alert alert-danger text-justify" *ngIf="bookList.length==0">
+            There is not any books to display please add some book and approved it</div>
+
+        <div class="list-books">
+
+            <div class="col-sm-4 column p-3" *ngFor="let book of bookList ">
+
+                <mat-card style="height: 22.5em; width: 220px;  margin-right: 40px;" class="tooltip1">
+                    <mat-card-title matTooltip="Book Image">
+                        <img src="assets\bookimage\{{book.image}}" style="height: 150px; width: 90px;
+                      margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; " />
+                    </mat-card-title>
+                    <mat-card-content style="width: 16em; ">
+                        <div class="out-of-stock " *ngIf="!book.noOfBooks ">Out Of stock</div>
+                        <div class="bookname ">{{ book.bookName }}</div>
+
+
+                        <span class="tooltiptext">
+                          <h2 style="text-align: left; padding-left: 10px;"> Details</h2>
+                          {{ book.bookDetails }}
+                        </span>
+
+                        <div class="authorname ">by {{ book.authorName }}</div>
+                        <div class="price ">Rs. {{ book.price }}</div>
+                        <div class="availablity " style="color: rgb(163, 43, 6); " *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">
+                            Only {{ book.noOfBooks }} left hurry up
+                        </div>
+                        <ng-template #elsecondition>
+                            <div class="availablity " style="color: rgb(2, 110, 2); " *ngIf="book.noOfBooks ">
+                                Available Books: {{ book.noOfBooks }}
+                            </div>
+                            <div style="height: 26px; " *ngIf="!book.noOfBooks "></div>
+                        </ng-template>
+                        <div class="cart-buttons " >
+                            <div>
+                                <button class="addtobag " (click)="AddToBag(book)" #clickState mat-button>ADD TO BAG</button>
+                            </div>
+                            <div>
+                                <button  style="border: 1px solid #e0d6d6;
+                              outline: none;
+                              width: 83px;
+                              height: 35px;
+                              background-color: white;
+                              border-radius: 3px;" (click)="AddToWishList(book)">WISHLIST</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+

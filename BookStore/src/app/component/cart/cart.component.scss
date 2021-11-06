@@ -1,0 +1,40 @@
+.mat-card{
+    margin-top: 50px;
+    margin-left: 350px;
+    margin-right: 350px;
+}
+
+
+.button1 {
+    margin-left: 37em;
+    margin-bottom: 7px;
+    margin-top: 6%;
+    font-size: 14px;
+    width: 131px;
+    height: 35px;
+    background-color: #3371B5;
+    color: white;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2cm;
+  }
+
+  .alert {
+      text-align: center;
+      color: blue;
+      font-size: x-large;
+  }
+
+  mat-radio-button{
+      margin-left: 40px;
+      margin-top: 15px;
+      padding-left: 70px;
+  }
+
+  
+

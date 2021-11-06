@@ -1,0 +1,45 @@
+<mat-card>
+    <b><mat-label> WishList ({{ wishListLength }})</mat-label></b>
+
+    <b><div class="alert alert-danger text-justify" *ngIf="wishList.length==0">
+      WishList Empty</div></b>
+
+            <div>
+                <div *ngFor="let books of wishList " fxLayout="row">
+                    <img style="padding-top: 24px;
+                  width: 71px;
+                  height: 126px;
+                  padding-left: 0px;
+                  margin-left: 51px;" src="assets\bookimage\{{books.image}}" class="bookimage">
+                    <br>
+                    <div class="details" fxLayout="row">
+                        <span style="margin-left: 11%;
+                      padding-top: 2em;
+                      font-size: 14px;">{{books.bookName}}</span>
+                       <b> <h3 style="margin-left: 4em;
+                      font-size: 10px;
+                      color: slategrey;
+                      padding-top: 70px;">by:{{books.authorName}}</h3></b>
+                        <h3 style="margin-left: -0.3em;
+                      padding-top: 90px;
+                      font-size: 17px; font-weight: 600;">Rs.{{books.price }}</h3>
+                    </div>
+                    <div style="display: flex; flex-direction: row; margin-left: -2.0em; margin-top: 10em; border-radius: 2em;">
+                        <div style="display: flex; flex-direction: row;margin-bottom: 10px;">
+                            
+                            
+                            <div>
+                                <button style="height: 30px; width: 60px;font-size: 12px;
+                                background-color:red;padding-top: 0em; margin-left: 10px; border: transparent;
+                               " (click)="Removecart(books.bookId)">Remove
+                               </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="button1" routerLink="/cart">CART</button>
+</mat-card>
+
+
